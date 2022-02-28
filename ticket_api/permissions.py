@@ -9,6 +9,11 @@ class IsTicketOwnerOrReadOnly(permissions.BasePermission):
         return obj.creator == request.user
 
 
+class IsTicketOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.creator == request.user
+
+
 class IsMessageOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:

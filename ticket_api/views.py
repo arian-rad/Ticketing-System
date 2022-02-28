@@ -49,3 +49,12 @@ class TicketMessagesAPIView(ListAPIView):
 
     def get_queryset(self):
         return Message.objects.filter(ticket=self.kwargs.get('pk'))
+
+
+class UserTicketsAPIView(ListAPIView):
+    serializer_class = TicketSerializer
+    permission_classes = (IsAuthenticated, IsTicketOwner)
+
+    def get_queryset(self):
+        return Ticket.objects.filter(creator=self.request.user)
+

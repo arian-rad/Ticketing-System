@@ -11,7 +11,8 @@ router.register('message', MessageViewSet)
 
 # define urlpatterns for none model view set APIViews
 urlpatterns = [
-    path('ticket-messages/<int:pk>/', TicketMessagesAPIView.as_view(), name='ticket messages'),
+    path('ticket-messages/<int:pk>/', TicketMessagesAPIView.as_view(), name='ticket_messages'),
+    path('user-tickets/', UserTicketsAPIView.as_view(), name='user_messages'),
 ]
 
 # Add router urls to urlpatterns
