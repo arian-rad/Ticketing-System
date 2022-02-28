@@ -3,8 +3,16 @@ from accounts.models import User
 
 
 class Ticket(models.Model):
+    PENDING = 'pending'
+    CLOSED = 'closed'
+    TICKET_STATUS = (
+        (PENDING, 'در حال بررسی'),
+        (CLOSED, 'بسته شده')
+    )
+
     subject = models.CharField(max_length=50, verbose_name='موضوع')
     create_at = models.DateTimeField(auto_now_add=True, verbose_name='تاریخ ایجاد')
+    status = models.CharField(max_length=100, verbose_name='وضعیت', choices=TICKET_STATUS, default=TICKET_STATUS[0][0])
     updated_at = models.DateTimeField(auto_now=True, verbose_name='تاریخ ویرایش')
     creator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='کاربر ایجاد کننده')
 

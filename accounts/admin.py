@@ -62,7 +62,6 @@ class CustomUserAdmin(UserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
-
     add_fieldsets = (
         (None, {'fields': ('username', 'first_name', 'last_name', 'password1', 'password2')}),
     )

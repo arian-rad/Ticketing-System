@@ -5,6 +5,12 @@ from .models import *
 class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
+        fields = ('subject', 'status')
+
+
+class TicketCreateUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ticket
         fields = ('subject',)
 
 

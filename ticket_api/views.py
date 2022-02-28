@@ -10,7 +10,11 @@ from .permissions import *
 
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
-    serializer_class = TicketSerializer
+
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return TicketCreateUpdateSerializer
+        return TicketSerializer
 
     def get_permissions(self):
         if self.action in ['update', 'partial_update', 'destroy']:
