@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres
+    container_name: ticket_db
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+  api:
+    build: .
+    container_name: ticket_api
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
