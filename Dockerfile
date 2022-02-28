@@ -3,7 +3,7 @@ FROM python:alpine
 RUN addgroup code && adduser -S -G code code
 
 # install postgresql dependencies
-RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev zlib-dev jpeg-dev
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
